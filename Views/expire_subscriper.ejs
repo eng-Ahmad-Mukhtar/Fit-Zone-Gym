@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GYM</title>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging.js"></script>
+</head>
+
+<body>
+    <h1>expire subiscriper</h1>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBDvW97zJogwWPYPBmM-mjBPSBe2WNaEVE",
+            authDomain: "peaceful-garden-417213.firebaseapp.com",
+            projectId: "peaceful-garden-417213",
+            storageBucket: "peaceful-garden-417213.appspot.com",
+            messagingSenderId: "931296168721",
+            appId: "1:931296168721:web:62509885ee25308b4ddab0",
+            measurementId: "G-Y5GLCHRM7H"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Retrieve Firebase Messaging object.
+        const messaging = firebase.messaging();
+
+        // Request permission and get token
+        messaging.requestPermission()
+            .then(function () {
+                console.log('Notification permission granted.');
+                return messaging.getToken();
+            })
+            .then(function (token) {
+                console.log('User Token:', token);
+                // Send the token to your server to save it
+            })
+            .catch(function (err) {
+                console.log('Unable to get permission to notify.', err);
+            });
+
+        // Handle incoming messages
+        messaging.onMessage((payload) => {
+            console.log('Message received. ', payload);
+            // Customize notification here
+        });
+    </script>
+</body>
+
+</html>

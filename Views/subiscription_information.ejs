@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Gym</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+	<link rel="stylesheet" type="text/css" href="css/stylee.css">
+
+
+</head>
+
+<body>
+
+	<!-- Start Header  -->
+	<header>
+		<div class="container">
+			<div class="logo">
+				<img src="/Assets/images/logo.png" alt="">
+				<a href=""> FIT<span>ZONE</span></a>
+			</div>
+			<a href="javascript:void(0)" class="ham-burger">
+				<span></span>
+				<span></span>
+			</a>
+			<div class="nav">
+				<ul>
+					<li><a href="/home"> الصفحه الرئيسية</a></li>
+
+					<li><a href="/admin">اضافه اشتراك جديد</a></li>
+					<li><a href="/subiscription_information">عرض معلومات اشتراك</a></li>
+					<li><a href="/all_subiscripers">عرض الجميع</a></li>
+					<li><a href="/classes">اشتراكات منتهيه</a></li>
+					<li><a href="/classes">معلومات</a></li>
+
+					<li><a href="/log_out">تسجيل خروج</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- End Header  -->
+
+
+
+	<section>	
+		<h2> بحث عن مشترك</h2>
+	</section>
+
+	<section class="main">
+	
+		<form action="/search_subiscription" method="post">
+
+
+			<label for="name">الاسم:</label>
+			<input type="text" id="searchName" name="name" required />
+			<button type="submit">
+				بحث
+			</button>
+		</form>
+		<% data.forEach(student=> { %>
+			<label for="">: الأسم</label>
+			<%= student.name %>
+
+		<% student.subscriptions.forEach((one, index)=> { %>
+		<table>
+			<caption> الاشتراك <%= index+1 %> </caption>
+			<tr>
+				<th>المدة</th>
+				<td><%=one.duration%></td>
+			</tr>
+			<tr>
+				<th>الاشتراك المدفوع</th>
+				<td><%=one.amount%>جنيها </td>
+			</tr>
+			<tr>
+				<th>تاريخ الاشتراك</th>
+				<td><%= moment( one.date).format('YYYY/MM/DD');%> ..<%= moment(one.date).format('LT'); %></td>
+			</tr>
+			<tr>
+				<th>تاريخ الانتهاء</th>
+				<td><%= moment(one.date).add(30, 'days').format('YYYY/MM/DD'); %></td>
+			</tr>
+			<tr>
+				<th>ملاحظة</th>
+				<td><%=one.comments%></td>
+			</tr>
+		</table>
+
+		<% }) %>
+
+		<% }) %>
+
+
+	</section>
+
+
+
+
+
+
+
+
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Include jQuery UI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script>
+
+		$(document).ready(function () {
+
+			$(".ham-burger, .nav ul li a").click(function () {
+
+				$(".nav").toggleClass("open")
+
+				$(".ham-burger").toggleClass("active");
+			})
+			$(".accordian-container").click(function () {
+				$(".accordian-container").children(".body").slideUp();
+				$(".accordian-container").removeClass("active")
+				$(".accordian-container").children(".head").children("span").removeClass("fa-angle-down").addClass("fa-angle-up")
+				$(this).children(".body").slideDown();
+				$(this).addClass("active")
+				$(this).children(".head").children("span").removeClass("fa-angle-up").addClass("fa-angle-down")
+			})
+		})
+
+		$(function () {
+			$('#searchName').autocomplete({
+				source: function (req, res) {
+					$.ajax({
+						url: "autocomplete/",
+						dataType: "jsonp",
+						typy: "GET",
+						data: req,
+						success: function (data) {
+							res(data)
+							// console.log(data);
+
+						},
+						error: function (err) {
+							console.log(err);
+						}
+					});
+				},
+
+				minLength: 1,
+				select: function (event, ui) {
+					if (ui.item) {
+						$('#searchName').text(ui.item.label)
+					}
+				}
+			});
+		},
+		)
+	</script>
+</body>
+
+</html>

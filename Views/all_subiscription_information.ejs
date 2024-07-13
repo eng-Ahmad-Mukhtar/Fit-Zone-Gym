@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Gym</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+	<link rel="stylesheet" type="text/css" href="css/stylee.css">
+
+
+</head>
+
+<body>
+
+	<!-- Start Header  -->
+	<header>
+		<div class="container">
+			<div class="logo">
+				<img src="/Assets/images/logo.png" alt="">
+				<a href=""> FIT<span>ZONE</span></a>
+			</div>
+			<a href="javascript:void(0)" class="ham-burger">
+				<span></span>
+				<span></span>
+			</a>
+			<div class="nav">
+				<ul>
+					<li><a href="/home"> الصفحه الرئيسية</a></li>
+
+					<li><a href="/admin">اضافه اشتراك جديد</a></li>
+					<li><a href="/subiscription_information">عرض معلومات اشتراك</a></li>
+					<li><a href="/all_subiscripers">عرض الجميع</a></li>
+					<li><a href="/classes">اشتراكات منتهيه</a></li>
+					<li><a href="/classes">معلومات</a></li>
+
+					<li><a href="/log_out">تسجيل خروج</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<!-- End Header  -->
+
+
+	<form action="/search_subiscriper" method="post">
+
+
+		<label for="name">بحث بالتاريخ</label>
+		<input type="month"  name="history" required  />
+		<button type="submit">
+			بحث
+		</button>
+	</form>
+
+<table>
+	<thead>
+		<tr>
+			<th>الاسم </th>
+			<th>المده</th>
+			<th>المبلغ المدفوع </th>
+			<th>تاريخ الأشتراك  </th>
+			<th>تاريخ النتهاء</th>	
+			<th>ملاحظات</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% subscriptions.forEach(subscription => { %>
+			<tr>
+				<td><%= subscription.userName %></td>
+				<td><%= subscription.duration %></td>
+				<td><%= subscription.amount %> جنيه</td>
+				<td><%= moment(subscription.date).format('YYYY/MM/DD') %> .. <%= moment(subscription.date).format('LT') %></td>
+				<td><%= moment(subscription.date).add(30, 'days').format('YYYY/MM/DD') %></td>
+				<td><%= subscription.comments %></td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>
+<!--  -->
+<label style="direction: rtl;">  <%= total %>جنيها :اجمالي المبلغ </label>
+
+
+
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Include jQuery UI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script>
+
+		$(document).ready(function () {
+
+			$(".ham-burger, .nav ul li a").click(function () {
+
+				$(".nav").toggleClass("open")
+
+				$(".ham-burger").toggleClass("active");
+			})
+			$(".accordian-container").click(function () {
+				$(".accordian-container").children(".body").slideUp();
+				$(".accordian-container").removeClass("active")
+				$(".accordian-container").children(".head").children("span").removeClass("fa-angle-down").addClass("fa-angle-up")
+				$(this).children(".body").slideDown();
+				$(this).addClass("active")
+				$(this).children(".head").children("span").removeClass("fa-angle-up").addClass("fa-angle-down")
+			})
+		})
+
+	</script>
+</body>
+
+</html>

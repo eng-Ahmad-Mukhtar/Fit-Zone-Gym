@@ -1,0 +1,255 @@
+
+
+body{
+	justify-content: center;
+	align-items: center;
+	display: grid;
+    align-content: center;
+    justify-items: center;
+	
+	margin:0;
+	padding:0;
+	overflow-x: hidden;
+}
+
+header{
+	
+	left: 0px;
+	top:0px;
+	width: 100%;
+	z-index: 10;
+	background-color: #000000;
+	padding:15px 15px;
+}
+
+header .container{
+	-webkit-display: flex;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header .logo a{
+	font-size: 30px;
+	text-decoration: none;
+	color:#e7e5e5;
+	font-weight: 700;
+}
+header .logo a span{
+	color:#c11325;
+}
+header .logo img{
+	position: relative;
+	width: 40px;
+}
+header .nav{
+	position: fixed;
+	background-color: #c11325;
+	width: 104px;
+	top:0;
+	right:0;
+	height: 100%;
+	z-index: 99;
+	padding:100px 0px 15px; 
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+	-webkit-transition: transform .5s ease;
+    transition: transform .5s ease;
+}
+header .nav.open{
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
+header .nav ul{
+	list-style: none;
+	margin:0;
+	padding:0px;
+}
+header .nav ul li{
+display: block;
+}
+header .nav ul li a{
+	text-decoration: none;
+    font-size: 11px;
+    font-weight: 400;
+    color: #ffffff;
+    display: block;
+    position: relative;
+    padding: 9px 6px;
+}
+header .nav ul li a.active::before{
+	content: '';
+	position: absolute;
+	left:0px;
+	top:0px;
+	height: 100%;
+	width:100%;
+	background-color:#000000;
+	opacity:.2;
+	-webkit-transition: width .5s ease;
+	transition: width .5s ease;
+	z-index: -1;
+}
+header .nav ul li a::before{
+	content: '';
+	position: absolute;
+	left:0px;
+	top:0px;
+	height: 100%;
+	width:0px;
+	background-color:#000000;
+	opacity:.2;
+	-webkit-transition: width .5s ease;
+	transition: width .5s ease;
+	z-index: -1;
+}
+header .nav ul li a:hover::before{
+	width: 100%;
+}
+header .ham-burger{
+	display: inline-block;
+	position: relative;
+	z-index: 100;
+}
+header .ham-burger span{
+	height: 3px;
+	margin-bottom:8px;
+	display: block;
+	background-color:#f9f3f3;
+	width:30px;
+	-webkit-transition: transform .5s ease;
+	transition: transform .5s ease;
+}
+header .ham-burger span:nth-child(1){
+	transform-origin: left top;
+}
+header .ham-burger span:nth-child(2){
+	transform-origin: left bottom;
+}
+
+header .ham-burger.active span:nth-child(1){
+	-webkit-transform: rotate(45deg) translateY(-6px);
+	transform: rotate(45deg) translateY(-6px);
+}
+header .ham-burger.active span:nth-child(2){
+	-webkit-transform: rotate(-45deg) translateY(6px);
+	transform: rotate(-45deg) translateY(6px)
+}
+
+main{
+	margin-top: auto;
+}
+.main {
+	background-color: #fff;
+	border-radius: 15px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	padding: 20px;
+	width: 300px;
+	text-align: center;
+    margin-top: auto;
+
+
+}
+
+.main h2 {
+	color: #c11325;
+	margin-bottom: 20px;
+
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: #555;
+	font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+	width: 100%;
+	margin-bottom: 15px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+button[type="submit"] {
+	padding: 15px;
+	border-radius: 10px;
+	border: none;
+	background-color: #c11325;
+	color: white;
+	cursor: pointer;
+	width: 100%;
+	font-size: 16px;
+}
+
+
+
+table {
+	width: 50%;
+	margin: 50px auto;
+	border-collapse: collapse;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+	direction: rtl;
+}
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: right; /* لضبط النصوص على اليمين */
+}
+th {
+	background-color: #f2f2f2;
+}
+caption {
+	margin-bottom: 10px;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.main {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.main h2 {
+    color: #c11325;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #c11325;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}

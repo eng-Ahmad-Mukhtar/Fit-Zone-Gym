@@ -1,0 +1,32 @@
+
+	<table>
+	<thead>
+		<tr>
+			<th>الاسم </th>
+			<th>المده</th>
+			<th>المبلغ المدفوع </th>
+			<th>تاريخ الأشتراك  </th>
+			<th>تاريخ النتهاء</th>	
+			<th>ملاحظات</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% data.forEach(user=> { %>
+		
+			
+				<% user.subscriptions.forEach((one, index)=> { %>
+					<tr>
+					<td><%= user.name %></td>
+					<td><%=one.duration%></td>
+					<td><%=one.amount%>جنيها </td>
+					<td><%= moment( one.date).format('YYYY/MM/DD');%> ..<%= moment(one.date).format('LT'); %></td>
+					<td><%= moment(one.date).add(30, 'days').format('YYYY/MM/DD'); %></td>
+					<td><%=one.comments%></td>
+				
+			</tr>
+			<% }) %>
+			<% }) %>
+		
+	</tbody>
+
+</table>
